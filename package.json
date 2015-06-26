@@ -19,9 +19,12 @@
     "build": "babel ./src/ --out-dir ./",
     "prepublish": "npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "json5": "^0.4.0",
+    "node-etcd": "^4.0.2"
+  },
   "devDependencies": {
-    "eslint": "0.23.0",
+    "eslint": "^0.23.0",
     "babel": "^5.5.8"
   },
   "keywords": [
