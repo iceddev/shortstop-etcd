@@ -1,0 +1,33 @@
+{
+  "name": "shortstop-etcd",
+  "version": "0.0.0",
+  "description": "A shortstop handler that supports etcd",
+  "author": "Blaine Bublitz <blaine@iceddev.com> (http://iceddev.com)",
+  "contributors": [],
+  "repository": "iceddev/shortstop-etcd",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "main": "index.js",
+  "files": [
+    "LICENSE",
+    "index.js"
+  ],
+  "scripts": {
+    "test": "eslint src/**/*.js",
+    "build": "babel ./src/ --out-dir ./",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "0.23.0",
+    "babel": "^5.5.8"
+  },
+  "keywords": [
+    "config",
+    "confit",
+    "etc",
+    "shortstop"
+  ]
+}
