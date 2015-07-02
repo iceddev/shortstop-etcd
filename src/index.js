@@ -1,5 +1,6 @@
 'use strict';
 
+const _ = require('lodash');
 const json5 = require('json5');
 const EtcdClient = require('node-etcd');
 
@@ -9,6 +10,13 @@ function parse(value){
   } catch(err){
     return value;
   }
+}
+
+function listing(result){
+  const nodes = _.get(result, 'node.nodes');
+  const items = _.pluck(nodes, 'value');
+  const value = _.map(items, parse);
+  return value;
 }
 
 function shortstopEtcd(...args){
@@ -22,7 +30,8 @@ function shortstopEtcd(...args){
       }
 
       if(result.dir === true){
-        cb(new Error(`Path "${key}" is a directory`));
+        const value = listing(result);
+        cb(null, value);
         return;
       }
 
