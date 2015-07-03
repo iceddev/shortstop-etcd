@@ -12,8 +12,8 @@ function parse(value){
   }
 }
 
-function listing(result){
-  const nodes = _.get(result, 'node.nodes');
+function listing(node){
+  const nodes = _.get(node, 'nodes');
   const items = _.pluck(nodes, 'value');
   const value = _.map(items, parse);
   return value;
@@ -29,13 +29,14 @@ function shortstopEtcd(...args){
         return;
       }
 
-      if(result.dir === true){
-        const value = listing(result);
-        cb(null, value);
+      const node = result.node;
+
+      if(node.dir === true){
+        cb(null, listing(node));
         return;
       }
 
-      const value = parse(result.node.value);
+      const value = parse(node.value);
 
       cb(null, value);
     });
